@@ -1,12 +1,17 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const hostname = 'localhost';
 const port = 3000;
 
 const app = express();
+app.use(morgan('dev'));
+
+//serve static files from public folder
+app.use(express.static(__dirname + '/public'));
+
 //middleware function - access to 3 parameters (req is request object, res is response object, and a function called next (we won't use next here).
 app.use((req, res) => {
-	console.log(req.headers);
 	res.statusCode = 200;
 	res.setHeader('Content-Type', 'text/html');
 	res.end('<html><body><h1>This is an Express Server</h1></body></html>');
@@ -15,5 +20,3 @@ app.use((req, res) => {
 app.listen(port, hostname, () => {
 	console.log(`Server running at http://${hostname}:${port}/`);
 });
-
-
