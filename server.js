@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionsRouter = require('./routes/promotionsRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -11,6 +12,7 @@ app.use(express.json());
 
 //provides root path for campsite router. Don't have to specify that in campsiteRouter.js
 app.use('/campsites', campsiteRouter);
+app.use('/promotions', promotionsRouter);
 
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
@@ -21,7 +23,7 @@ app.use((req, res) => {
 	res.setHeader('Content-Type', 'text/html');
 	res.end('<html><body><h1>This is an Express Server</h1></body></html>');
 });
-//create an instance of the http server class and start listening to it. 
+//create an instance of the http server class and start listening to it.
 app.listen(port, hostname, () => {
 	console.log(`Server running at http://${hostname}:${port}/`);
 });
