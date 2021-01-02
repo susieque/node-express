@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const campsiteRouter = require('./routes/campsiteRouter');
 const promotionsRouter = require('./routes/promotionsRouter');
+const partnersRouter = require('./routes/partnersRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 //provides root path for campsite router. Don't have to specify that in campsiteRouter.js
 app.use('/campsites', campsiteRouter);
 app.use('/promotions', promotionsRouter);
+app.use('/partners', partnersRouter);
 
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
